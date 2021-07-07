@@ -5,11 +5,21 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    sensors:[],
     temperature: 0
   },
   mutations: {
-    UPDATE_TEMP(state, value){
-      state.temperature = value;
+    //temperature sensors
+    ADD_TEMP_SENSOR(state, sensor){
+      state.sensors.push(sensor);
+      console.log(state.sensors);
+    },
+    UPDATE_TEMP(state, {sensorIndex, value}){
+      state.sensors[sensorIndex].value = value;
+      console.log("Sensor value of " + state.sensors[sensorIndex].name + " updated");
+    },
+    RESET_SENSORS(state){
+      state.sensors = [];
     }
   },
   actions: {
