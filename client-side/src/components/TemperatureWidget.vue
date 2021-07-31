@@ -36,7 +36,7 @@ export default {
         sensorsAPI.oneSensor(this.macAddress).then((response) => {
           this.$store.commit('UPDATE_TEMP', {sensorIndex: this.storeIndexState, value: response.data.value});
         });
-      }, 10000);
+      }, 100000);
     },
     getStoreState(){
       this.storeIndexState = this.$store.state.sensors.findIndex(sensor => sensor.macAddress === this.macAddress)

@@ -6,7 +6,9 @@
 
 <script>
 import Spinner from '@/components/Spinner'
+
 import sensorsAPI from '@/api/sensors.js'
+import bluetoothAPI from '@/api/bluetooth.js'
 
 export default {
   name: 'InitApp',
@@ -18,6 +20,8 @@ export default {
     await this.erase(); 
     // Loading and create sensors
     await this.retrieveSensors();
+    // Get bluetooth current state
+    await this.getBluetoothState();
     setTimeout(() => {
       this.$router.push('/home');
     }, 2000);
@@ -33,6 +37,14 @@ export default {
           }
           this.$store.commit("ADD_TEMP_SENSOR", sensor);
         });
+      });
+    },
+    async getBluetoothState(){
+      await bluetoothAPI.getState().then((response) => {
+        if(response.data == "enable") console.log("bah enable quoi");
+        else console.log('hmmmm')
+        console.log("response : ", response.data);
+        this.$store.commit("UPDATE_STATE", {which: "bluetooth", value: response.data});
       });
     },
     async erase(){

@@ -1,27 +1,26 @@
 <template>
-  <div class="container">
-    <div class="header row">
-      <div class="col text-right" v-for="sensor in $store.state.sensors" :key="sensor.name">
-        <TemperatureWidget :macAddress="sensor.macAddress"/>
-      </div>
-    </div>
-    <div class="main-activity">
+  <div class="home">
+    <HomeHeader/>
+    <div class="container main-activity">
       <TileGrid/>
     </div>
+    <HomeFooter/>
   </div>
 </template>
 
 <script>
-import TemperatureWidget from "../components/TemperatureWidget.vue"
 import TileGrid from "@/components/TileGrid"
+import HomeHeader from "@/components/home/HomeHeader.vue"
+import HomeFooter from "@/components/home/HomeFooter.vue"
 
 import sensorsAPI from '@/api/sensors.js'
 
 export default {
   name: 'Home',
   components:{
-    TemperatureWidget,
-    TileGrid
+    TileGrid,
+    HomeHeader,
+    HomeFooter
   },
   async mounted(){
     await sensorsAPI.list().then((response) => {
@@ -36,6 +35,7 @@ export default {
   padding-top: 25px;
 }
 .main-activity{
-  padding-top: 45px;
+  padding-top: 10px;
+  height: 100%;
 }
 </style>

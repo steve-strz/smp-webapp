@@ -1,13 +1,9 @@
 <template>
   <div class="grid">
-    <div class="d-flex justify-content-center">
-      <TallTile/>
-      <TallTile/>
-      <TallTile/>
-      <div class="d-flex">
-        <div class="col align-items-center">
-          <MediumTile/>
-          <MediumTile style="margin-top:20px"/>
+    <div class="d-flex">
+      <div v-for="col in $store.state.tiles" :key="col.name" class="col-3"> 
+        <div v-for="tile in col.tiles" :key="tile.name">
+          <MediumTile :name="tile.name" :iconName="tile.iconName" :colors="tile.colors"/>
         </div>
       </div>
     </div>
@@ -24,12 +20,17 @@ export default {
     TallTile,
     MediumTile
   },
+  data(){
+    return{
+      colorsArray: [18, 158, 255, 31, 101, 206]
+    }
+  }
 }
 </script>
 
 <style>
 .grid{
-  height: 300px;
+  height: 100%;
   width: 100%;
 }
 </style>

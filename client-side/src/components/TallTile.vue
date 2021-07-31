@@ -12,9 +12,9 @@ export default {
 
 <style scoped>
 .tall-tile{
-  margin: 0 10px;
+  margin: 20px 10px;
   width: 200px;
-  height:300px;
+  height:400px;
   background: rgb(68,155,255);
   background: linear-gradient(45deg, rgba(68,155,255,1) 0%, rgba(113,178,255,1) 100%);
   border-radius: 5px;
